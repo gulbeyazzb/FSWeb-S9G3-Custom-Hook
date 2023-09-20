@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 
-const useAxios = (reqType, endpoint, payload) => {
+export const useAxios = (reqType, endpoint, payload) => {
   const [loading, setLoading] = useState();
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [err, setErr] = useState();
 
   const doRequest = () => {
@@ -13,7 +13,6 @@ const useAxios = (reqType, endpoint, payload) => {
       .catch((err) => setErr(err))
       .finally(() => setLoading(false));
   };
+
   return [data, doRequest, loading, err];
 };
-
-export default useAxios;
